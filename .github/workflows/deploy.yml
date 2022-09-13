@@ -1,4 +1,4 @@
-name: Nico Echandi's Hackademy                                # workflow name
+name: deploy                               # workflow name
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: sast-sonar
+name: sonar
 
 on:
   push:
