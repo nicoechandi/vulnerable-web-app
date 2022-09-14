@@ -1,10 +1,6 @@
 name: dast 
 
 on: [push]
-  # workflow_call:
-  #   secrets:
-  #     HAWK_API_KEY:
-  #       required: true
 
 jobs:
 
@@ -20,26 +16,4 @@ jobs:
         uses: zaproxy/action-full-scan@v0.4.0
         with:
           docker_name: 'owasp/zap2docker-stable'
-          target: 'https://nicoechandi.herokuapp.com/'       
-
-  # DAST-API:
-  #   name: ZAP API Scan
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-  #     - name: generar token
-  #       run: echo "hello"  
-  #     - name: ZAP Scan
-  #       continue-on-error: true
-  #       run: |
-  #         docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -t https://nicoechandi.herokuapp.com/openapi.json -f openapi
-
-  # stackhawk-hawkscan:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v3  
-  #   - uses: stackhawk/hawkscan-action@v2.0.0
-  #     with:
-  #       apiKey: ${{ secrets.HAWK_API_KEY }}
-  #       configurationFiles: stackhawk.yml
+          target: 'https://nicoechandi.herokuapp.com/'
