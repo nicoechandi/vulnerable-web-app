@@ -53,7 +53,7 @@ namespace teardrop
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
 
             RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
+            AES.KeySize = 128;
             AES.BlockSize = 128;
             AES.Padding = PaddingMode.PKCS7;
 
