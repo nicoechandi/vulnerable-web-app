@@ -53,15 +53,15 @@ namespace teardrop
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
 
             RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 128;
-            AES.BlockSize = 128;
+            AES.KeySize = 2048;
+            AES.BlockSize = 2048;
             AES.Padding = PaddingMode.PKCS7;
 
             var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
             AES.Key = key.GetBytes(AES.KeySize / 8);
             AES.IV = key.GetBytes(AES.BlockSize / 8);
 
-            AES.Mode = CipherMode.CFB;
+            AES.Mode = CipherMode.AES;
 
             fsCrypt.Write(salt, 0, salt.Length);
 
@@ -103,13 +103,13 @@ namespace teardrop
             fsCrypt.Read(salt, 0, salt.Length);
 
             RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
-            AES.BlockSize = 128;
+            AES.KeySize = 2048;
+            AES.BlockSize = 2048;
             var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
             AES.Key = key.GetBytes(AES.KeySize / 8);
             AES.IV = key.GetBytes(AES.BlockSize / 8);
             AES.Padding = PaddingMode.PKCS7;
-            AES.Mode = CipherMode.CFB;
+            AES.Mode = CipherMode.AES;
 
             CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read);
 
